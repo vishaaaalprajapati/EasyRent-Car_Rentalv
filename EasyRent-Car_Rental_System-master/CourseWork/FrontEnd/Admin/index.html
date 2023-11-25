@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Easy Car Rental | Admin </title>
+    <link href="assests/css/style.css" rel="stylesheet">
+    <link href="assests/css/bootstrap.css" rel="stylesheet">
+    <link href="assests/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body onload="switchToDashboard()">
+<header class="header">
+    <div>
+        <img src="assests/img/brand.png" alt="brand">
+    </div>
+    <h1>Easy Rental - Admin</h1>
+</header>
+
+<main>
+
+    <section class="side-panel-container">
+
+        <section class="side-panel-top">
+            <ul>
+                <img src="assests/icons/icons8-dashboard-layout-24.png" class="dash-png">
+                <img src="assests/icons/car.png" class="car-png">
+                <img src="assests/icons/customer.png" class="customer-png">
+                <img src="assests/icons/rent.png" class="rental-png">
+                <img src="assests/icons/income.png" class="Income-png">
+            </ul>
+        </section>
+
+        <aside>
+            <p> Admin </p>
+<!--            <img src="assests/icons/icons8-dashboard-layout-24.png" class="dash-png">-->
+            <a href="javascript:switchToDashboard();" class="btndash" id="btndash" onclick='switchToDashboard();'>
+                <i class="fa fa-user-o" aria-hidden="true">
+                </i>
+                Dashboard
+            </a>
+<!--            <img src="assests/icons/icons8-dashboard-layout-24.png" class="car-png">-->
+            <a href="javascript:switchToCars();" id="btncar" onclick="switchToCars()">
+                <i class="fa fa-laptop" aria-hidden="true"></i>
+                Manage Cars
+            </a>
+<!--            <img src="assests/icons/icons8-dashboard-layout-24.png" class="customer-png">-->
+            <a href="javascript:switchToCustomer();" id="btncustomer" onclick="switchToCustomer()">
+                <i class="fa fa-clone" aria-hidden="true"></i>
+                Manage Customer
+            </a>
+<!--            <img src="assests/icons/icons8-dashboard-layout-24.png" class="rental-png">-->
+            <a href="javascript:switchToRental();" id="btnrental" onclick="switchToRental()">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                Rental Request
+            </a>
+<!--            <img src="assests/icons/icons8-dashboard-layout-24.png" class="Income-png">-->
+            <a href="javascript:switchToIncome();" id="btnincome" onclick="switchToIncome()">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                Income
+            </a>
+        </aside>
+
+    </section>
+
+    <section class="main-container">
+
+        <!--===================================== DASHBOARD ==================================-->
+
+        <section class="dashboard-container">
+
+            <section>
+                <div class="r-users">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="registeredUsers"></h1>
+                    <p class="fs-5">Registered Users</p>
+                </div>
+                <div class="t-bookings-c">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="totalBookings"></h1>
+                    <p class="fs-5">Total Bookings</p>
+                </div>
+                <div class="a-bookings-c">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="activeBookings"></h1>
+                    <p class="fs-5">Active Bookings</p>
+                </div>
+                <div class="av-cars">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="availableCars"></h1>
+                    <p class="fs-5">Available Cars</p>
+                </div>
+                <div class="re-cars">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="reservedCars"></h1>
+                    <p class="fs-5">Reserved Cars</p>
+                </div>
+                <div class="nm-cars">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="carsNeedMaintenance"></h1>
+                    <p class="fs-5" style="text-align: right">Cars<br> Need Maintenance</p>
+                </div>
+
+                <div class="av-drivers">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="availableDrivers"></h1>
+                    <p class="fs-5">Available Drivers</p>
+                </div>
+                <div class="oc-drivers">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="occupiedDrivers"></h1>
+                    <p class="fs-5">Occupied Drivers</p>
+                </div>
+                <div class="un-cars">
+                    <div>
+                        <img src="assests/icons/useric.png">
+                    </div>
+                    <h1 id="carsUnderMaintenance"></h1>
+                    <p class="fs-5" style="text-align: right">Cars<br> Under Maintenance</p>
+                </div>
+            </section>
+
+        </section>
+
+        <!--===================================== End Of DASHBOARD==================================-->
+
+        <!--===================================== Cars ==================================-->
+
+        <section class="cars-container">
+
+            <section class="manage-cars-option-header">
+                <div>
+
+                    <button type="button" class="btnaddCar" id="addCar">Add Car</button>
+                    &nbsp
+                    <button type="button" class="btnviewCars" id="viewCars">View Cars</button>
+                    &nbsp
+                    <button type="button" class="btneditCar" id="editCar">Edit Cars</button>
+                </div>
+            </section>
+
+            <section class="manage-cars-option-container">
+
+                <section class="add-car container-fluid">
+                    <form enctype="multipart/form-data">
+                        <div class="row justify-content-around">
+                            <div class="form-group col-3 pt-1">
+                                <label for="txtRegistrationNo">Registration No</label>
+                                <input type="text" id="txtRegistrationNo" class="form-control" name="id">
+                            </div>
+                            <div class="form-group col-3 pt-2">
+                                <label for="txtBrand">Brand</label>
+                                <input type="text" id="txtBrand" class="form-control">
+                            </div>
+                            <div class="form-group col-3 pt-2">
+                                <label for="cmbType">Type</label>
+                                <select id="cmbType" class="form-select">
+                                    <option>General</option>
+                                    <option>Premium</option>
+                                    <option>Luxury</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row justify-content-around">
+                            <div class="custom-file col-2 mb-3">
+                                <label class="form-label" for="frontImg">Front Image</label>
+                                <input class="form-control" type="file" id="frontImg" name="file">
+                            </div>
+                            <div class="custom-file col-2">
+                                <label class="form-label" for="backImg">Back Image</label>
+                                <input class="form-control" type="file" id="backImg">
+                            </div>
+                            <div class="custom-file col-2">
+                                <label class="form-label" for="sideImg">Side Image</label>
+                                <input class="form-control" type="file" id="sideImg">
+                            </div>
+                            <div class="custom-file col-2">
+                                <label class="form-label" for="interiorImg">Interior Image</label>
+                                <input class="form-control" type="file" id="interiorImg">
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="row justify-content-around">
+                            <div class="form-group col-2">
+                                <label for="cmbNoOfPassengers">No Of Passengers</label>
+                                <select id="cmbNoOfPassengers" class="form-select">
+                                    <option>2</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="cmbTransmissionType">Transmission Type</label>
+                                <select id="cmbTransmissionType" class="form-select">
+                                    <option>Auto</option>
+                                    <option>Manual</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="cmbFuelType">Fuel Type</label>
+                                <select id="cmbFuelType" class="form-select">
+                                    <option>Diesel</option>
+                                    <option>Petrol</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="txtColor">Color</label>
+                                <input type="text" class="form-control" id="txtColor">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row justify-content-around">
+                            <div class="form-group col-2">
+                                <label for="txtDailyPriceIncrement">Daily Rate</label>
+                                <input type="number" class="form-control" id="txtDailyPriceIncrement">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="txtMonthlyPriceIncrement">Monthly Rate</label>
+                                <input type="number" class="form-control" id="txtMonthlyPriceIncrement">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="txtFreeMileagePerDay">Free Mileage /Day</label>
+                                <input type="number" class="form-control" id="txtFreeMileagePerDay">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="txtFreeMileagePerMonth">Free Mileage /Month</label>
+                                <input type="number" class="form-control" id="txtFreeMileagePerMonth">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="txtPricePerKm">Price Per KM</label>
+                                <input type="number" class="form-control" id="txtPricePerKm">
+                            </div>
+                            <div class="form-group col-2">
+                                <label for="txtKmMeterValue">KM Meter Value</label>
+                                <input type="number" class="form-control" id="txtKmMeterValue">
+                            </div>
+                        </div>
+
+                        <div class="justify-content-around col-3 mx-auto">
+                            <button type="button" class="btn btn-outline-danger" onclick="addCarToTheLot()">Add Car To
+                                The Lot
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+            </section>
+
+            <section class="view-cars">
+
+                <table class="table table-success table-hover">
+                    <thead class="table-primary">
+                    <th>Reg No</th>
+                    <th>Brand</th>
+                    <th>Type</th>
+                    <th>Front</th>
+                    <th>Back</th>
+                    <th>Side</th>
+                    <th>Interior</th>
+                    <th>No Of Passengers</th>
+                    <th>Transmission</th>
+                    <th>Fuel Type</th>
+                    <th>Color</th>
+                    <th>Daily Rate</th>
+                    <th>Monthly Rate</th>
+                    <th>Free Mileage Per Day</th>
+                    <th>Free Mileage Per Month</th>
+                    <th>Price /Km</th>
+                    <th>KM Meter Value</th>
+                    <th>Available</th>
+                    <th>Damaged</th>
+                    <th>Under Maintenance</th>
+
+                    </thead>
+                    <tbody id="tblViewCars">
+
+                    </tbody>
+                </table>
+
+            </section>
+
+            <section class="edit-cars" style="overflow-x: scroll; overflow-y: scroll">
+
+                <table class="table table-success table-hover">
+                    <thead class="table-primary">
+                    <th>Reg No</th>
+                    <th>Front</th>
+                    <th>Back</th>
+                    <th>Side</th>
+                    <th>Interior</th>
+                    <th>Color</th>
+                    <th>Daily Rate</th>
+                    <th>Monthly Rate</th>
+                    <th>Free Mileage Per Day</th>
+                    <th>Free Mileage Per Month</th>
+                    <th>Price /Km</th>
+                    <th>Edit</th>
+                    <th>Mark Damaged</th>
+                    <th>Add To Maintenance/<br>Mark Repaired</th>
+                    <th>Remove</th>
+                    </thead>
+                    <tbody id="tblEditCars">
+
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+        <!--===================================== End Of Cars ==================================-->
+
+        <!--===================================== Customer ==================================-->
+
+        <section class="view-customers-container">
+
+            <div>
+                <table class="table table-success table-hover">
+                    <thead class="table-primary">
+                    <th>NIC</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Verify Details</th>
+                    </thead>
+                    <tbody id="tblViewCustomers">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!--===================================== End Of Customer ==================================-->
+
+        <!--===================================== Rental ==================================-->
+
+        <section class="rental-container">
+
+            <section class="rental-container-header">
+                <div>
+
+                    <button onclick="viewRentals($(this))" type="button" class="btnrequests" id="requestss">Requests
+                    </button>
+                    &nbsp
+                    <button type="button" class="btnc-driver" id="c-driver">Change Driver</button>
+                    &nbsp
+                    <button onclick="viewRequestsForPayment($(this))" type="button" class="btnpayments" id="payments">
+                        Payments
+                    </button>
+                </div>
+            </section>
+
+            <section class="view-rentals" style="overflow-y: scroll; overflow-x: scroll">
+
+                <table class="table table-bordered table-hover">
+                    <thead class="table-primary">
+                    <th>Rent ID</th>
+                    <th>Duration Plan</th>
+                    <th>Cus ID</th>
+                    <th>Pickup Date</th>
+                    <th>Return Date</th>
+                    <th>Pickup Venue</th>
+                    <th>Return Venue</th>
+                    <th>Pickup Time</th>
+                    <th>Return Time</th>
+                    <th>Driver IDs</th>
+                    <th>Driver Names</th>
+                    <th>Edit Drivers</th>
+                    <th>Car Reg No's</th>
+                    <th>Rent State</th>
+                    <th>Description</th>
+                    <th>Accept/<br>Deny</th>
+                    </thead>
+                    <tbody id="viewRentalsTable">
+
+
+                    </tbody>
+                </table>
+
+
+            </section>
+
+            <section class="change-driver">
+
+                <div class="row justify-content-around">
+                    <div class="col-4 pt-4 mt-3" style="height: 350px; overflow-y: scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead class="table-primary">
+                            <th>Driver ID</th>
+                            <th>Driver Name</th>
+                            <th>Replacement</th>
+                            </thead>
+                            <tbody id="tblCurrentDrivers">
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="col-4 pt-4 mt-3 tbl-driver-replacements-container" style="height: 350px;">
+                        <div>
+                            <table class="table table-hover table-bordered">
+                                <thead class="table-primary">
+                                <th>Driver ID</th>
+                                <th>Driver Name</th>
+                                </thead>
+                                <tbody id="tblDriverReplacements">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <button type="button" class="btn btn-danger" style="position: absolute; left: 310px"
+                            id="btnCancel">Cancel
+                    </button>
+                    <button type="button" class="btn btn-success" style="position: absolute; left: 400px"
+                            id="btnFinalizeDrivers">Finalize
+                    </button>
+                    <button id="btnReplace" type="button" class="btn btn-warning"
+                            style="position: absolute; right: 100px">Replace
+                    </button>
+                </div>
+
+            </section>
+
+            <section class="calculate-payment container-fluid">
+
+                <div class="row">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-primary">
+                        <th>Rent ID</th>
+                        <th>Duration Plan</th>
+                        <th>Cus ID</th>
+                        <th>Pickup Date</th>
+                        <th>Return Date</th>
+                        <th>Pickup Venue</th>
+                        <th>Return Venue</th>
+                        <th>Driver IDs</th>
+                        <th>Driver Names</th>
+                        <th>Calculate Payment</th>
+                        </thead>
+                        <tbody id="tblCalculatePayment">
+                        <tr>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-primary">
+                        <th>Reg No</th>
+                        <th>Brand</th>
+                        <th>Type</th>
+                        <th>Color</th>
+                        <th>Waiver Deduction</th>
+                        <th>Km Meter Value</th>
+                        </thead>
+                        <tbody id="tblCarsForPayment">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-group" id="additionalPaymentContainer">
+                    <label for="txtAdditionalPayment">+Additional</label>
+                    <input type="number" class="form-control" id="txtAdditionalPayment">
+                </div>
+                <button type="button" class="btn btn-warning font-weight-bold" id="btnFinalizePayment">Finalize
+                    Payment
+                </button>
+
+            </section>
+
+        </section>
+
+        <!--===================================== End Of Rental ==================================-->
+
+        <!--===================================== Income ==================================-->
+
+        <section class="calculate-income-container">
+
+            <div class="calculate-income-header">
+                <div>
+                    <h1 id="year"></h1>
+                </div>
+            </div>
+            <div class="calculate-income">
+                <div>
+                    <div class="d-income">
+                        <div>
+                            <img src="assests/icons/useric.png">
+                        </div>
+                        <p>Daily Income</p>
+                        <h1 id="dailyIncome"></h1>
+                    </div>
+                    <div class="w-income">
+
+                        <div>
+                            <img src="assests/icons/useric.png">
+                        </div>
+                        <h1 id="weeklyIncome"></h1>
+                        <p>Weekly Income</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="m-income">
+
+                        <div>
+                            <img src="assests/icons/useric.png">
+                        </div>
+                        <h1 id="monthlyIncome"></h1>
+                        <p>Monthly Income</p>
+                    </div>
+                    <div class="y-income">
+
+                        <div>
+                            <img src="assests/icons/useric.png">
+
+                        </div>
+                        <h1 id="yearlyIncome"></h1>
+                        <p>Yearly Income</p>
+                    </div>
+                </div>
+                <div class="sec"></div>
+                <div class="sec-1">
+                    <div class="neumorphic neumorphic--pressed variation2 pressed">
+
+                    </div>
+                </div>
+                <div>
+                    <img class="animez" src="assests/img/ezgif.com-gif-maker.gif">
+                </div>
+
+            </div>
+
+        </section>
+
+        <!--===================================== End Of Income ==================================-->
+
+    </section>
+
+    <script src="assests/js/Main.js"></script>
+    <script src="assests/js/bootstrap.min.js"></script>
+    <script src="assests/libs/jquery-3.6.0.min.js"></script>
+    <script src="assests/js/managecars/managecars.js"></script>
+    <script src="assests/js/rental-req/rental.js"></script>
+
+</main>
+</body>
+</html>
